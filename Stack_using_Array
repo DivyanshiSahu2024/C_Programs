@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+#define size 10
+int stack[size], top=-1;
+
+void push(int n);
+void pop();
+void display();
+
+void main(){
+    int value,choice;
+    while(1){
+    printf("\n ***** Welcome to Stack Implementation ***** \n");
+    printf("1.Push\n2.Pop\n3.Display\n4.Exit\n");
+    printf("Which operation you want to perform:");
+    scanf("%d",&choice);
+    switch(choice){
+        case 1:
+         printf("Enter Value you want to push to the stack: ");
+         scanf("%d",&value);
+         push(value);
+         break;
+        case 2:
+         pop();
+         break;
+        case 3:
+         display();
+         break;
+        case 4:
+         exit(0);
+        default:
+         printf("Wrong Choice !!!");
+      }
+    }
+}
+
+
+void push(int value){
+    if(top==size-1){
+        printf("Stack is full!! 'OVERFLOW CONDITION' Element can't be inserted.");
+    }
+    else{
+        top++;
+        stack[top]=value;
+        printf("\n Insertion success!!\n");
+    }
+}
+
+void pop(){
+    if(top==-1){
+        printf("Stack is Empty 'UNDERFLOW CONDITION'.. No element in the tree!");
+    }
+    else{
+        printf("Element %d deleted successfully",stack[top]);
+        top--;
+    }
+}
+
+void display(){
+    printf("Stack has following elements:\n");
+    for(int i=top;i>=0;i--){
+        printf("%d\n",stack[top]);
+    }
+}
