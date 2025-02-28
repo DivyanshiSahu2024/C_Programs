@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+struct Node{
+    int data;
+    struct Node *next;
+}
+*top=NULL;
+
+void push(int n);
+void pop();
+void display();
+
+void main(){
+    int value,choice;
+    while(1){
+    printf("\n ***** Welcome to Stack Implementation Using Linked List ***** \n");
+    printf("1.Push\n2.Pop\n3.Display\n4.Exit\n");
+    printf("Which operation you want to perform:");
+    scanf("%d",&choice);
+    switch(choice){
+        case 1:
+         printf("Enter Value you want to push to the stack: ");
+         scanf("%d",&value);
+         push(value);
+         break;
+        case 2:
+         pop();
+         break;
+        case 3:
+         display();
+         break;
+        case 4:
+         exit(0);
+        default:
+         printf("Wrong Choice !!!");
+       }
+    }
+}
+
+
+void push(int value){
+    // if(top==size-1){
+    //     printf("Stack is full!! 'OVERFLOW CONDITION' Element can't be inserted.");
+    // }
+    // else{
+    //     top++;
+    //     stack[top]=value;
+    //     printf("\n Insertion success!!\n");
+    struct Node *newNode;
+    newNode=(struct Node*)malloc(sizeof(struct Node));
+    newNode-> data=value;
+    if(newNode==NULL){
+        newNode->next=NULL;
+    }
+    else{
+     newNode->next=top;
+     top=newNode;
+    
+    }
+    printf("Insertion Success!!!\n");
+}
+
+void pop(){
+    // if(top==-1){
+    //     printf("Stack is Empty 'UNDERFLOW CONDITION'.. No element in the tree!");
+    // }
+    // else{
+    //     printf("Element %d deleted successfully",stack[top]);
+    //     top--;
+    // }
+    if(top==NULL){
+        printf("STACK IS EMPTY...Deletion not possible..\n");
+    }
+    else{
+        struct Node* temp=top;
+        top=temp->next;
+        free(temp);
+    }
+    
+}
+
+void display(){
+         if(top==NULL){
+        printf("STACK IS EMPTY...\n");
+    }
+    else{
+        struct Node* temp=top;
+        while(temp->next!=NULL){
+            printf("%d-->",temp->data);
+            temp=temp->next;
+        }
+    
+    printf("%d-->",temp->data);
+    }
+}
